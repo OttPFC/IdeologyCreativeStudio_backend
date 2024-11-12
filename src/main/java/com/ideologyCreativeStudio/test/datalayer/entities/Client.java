@@ -1,10 +1,10 @@
 package com.ideologyCreativeStudio.test.datalayer.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "client")
@@ -30,6 +30,15 @@ public class Client extends BaseEntity{
     private String note;
 
     @Column(nullable = false)
-    private boolean isEnabled;
+    private boolean enabled;
+
+    @Column(updatable = false)
+    private LocalDate createDate = LocalDate.now();
+
+    private LocalDate deleteDate;
+
+    @OneToOne
+    @JoinColumn(name = "create_by")
+    private User createBy;
 
 }

@@ -1,9 +1,12 @@
 package com.ideologyCreativeStudio.test.datalayer.entities;
 
+import com.ideologyCreativeStudio.test.datalayer.entities.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "project")
@@ -28,4 +31,14 @@ public class Project extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "project_users",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    @ToString.Exclude
+    private List<User> users = new ArrayList<>();
+
 }

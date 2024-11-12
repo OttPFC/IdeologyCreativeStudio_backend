@@ -15,8 +15,4 @@ abstract class  BaseEntity {
     @SequenceGenerator(name = "base_entity_seq", sequenceName = "base_entity_sequence", allocationSize = 1)
     private Long id;
 
-    @Column(name = "created_at", updatable = false)
-    @CreatedDate
-    private LocalDateTime createdAt = LocalDateTime.now();
-
 }
