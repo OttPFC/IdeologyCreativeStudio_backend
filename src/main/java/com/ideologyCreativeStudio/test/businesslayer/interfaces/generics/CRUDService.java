@@ -1,4 +1,4 @@
-package com.ideologyCreativeStudio.test.businesslayer.interfaces;
+package com.ideologyCreativeStudio.test.businesslayer.interfaces.generics;
 
 import com.ideologyCreativeStudio.test.businesslayer.dto.BaseDTO;
 import org.springframework.data.domain.Page;

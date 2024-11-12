@@ -1,5 +1,6 @@
-package com.ideologyCreativeStudio.test.businesslayer.dto;
+package com.ideologyCreativeStudio.test.businesslayer.dto.user;
 
+import com.ideologyCreativeStudio.test.businesslayer.dto.BaseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,8 +12,8 @@ import lombok.EqualsAndHashCode;
 @Builder(setterPrefix = "with")
 public class RegisterUserDTO extends BaseDTO {
 
-    String name;
-    String surname;
+    String firstName;
+    String lastName;
     String username;
     String email;
     String password;

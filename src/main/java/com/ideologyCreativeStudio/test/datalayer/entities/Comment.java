@@ -21,9 +21,14 @@ public class Comment extends BaseEntity{
     @Column(updatable = false, nullable = false)
     private LocalDate createDate = LocalDate.now();
 
-    private LocalDate modifyComment;
+    @PrePersist
+    protected void onCreate() {
+        this.createDate = LocalDate.now();
+    }
 
-    @OneToOne
+    private LocalDate lastModifiedDate;
+
+    @ManyToOne
     @JoinColumn(name = "author_id")
     private User author;
 

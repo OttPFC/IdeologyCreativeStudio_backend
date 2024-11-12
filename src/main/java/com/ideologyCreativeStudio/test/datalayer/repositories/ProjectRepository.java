@@ -12,7 +12,7 @@ public interface ProjectRepository extends JpaRepository<Project,Long>,
 
     Optional<Project> findOneByTitle(String title);
 
-    Optional<Project> findByUser(User user);
+    Optional<Project> findByUsers(User user);
 
     Optional<Project> findByStatus(Status status);
 }

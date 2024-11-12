@@ -14,5 +14,5 @@ import lombok.*;
 @ToString
 public class Role extends BaseEntity{
 
-    private String role;
+    private String roleType;
 }

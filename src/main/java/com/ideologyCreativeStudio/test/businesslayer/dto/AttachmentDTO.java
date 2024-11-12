@@ -1,6 +1,5 @@
-package com.ideologyCreativeStudio.test.businesslayer.dto.response;
+package com.ideologyCreativeStudio.test.businesslayer.dto;
 
-import com.ideologyCreativeStudio.test.businesslayer.dto.BaseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(setterPrefix = "with")
-public class AttachmentResponseDTO extends BaseDTO {
+public class AttachmentDTO extends BaseDTO{
 
     private Long id;
     private String fileName;

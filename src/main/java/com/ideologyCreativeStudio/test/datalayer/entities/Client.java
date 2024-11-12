@@ -2,6 +2,7 @@ package com.ideologyCreativeStudio.test.datalayer.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -21,6 +22,7 @@ public class Client extends BaseEntity{
 
     @Column(length = 100)
     @Email
+    @Pattern(regexp = "^[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,}$", message = "Email non valida")
     private String email;
 
     @Column(length = 50)
@@ -32,13 +34,20 @@ public class Client extends BaseEntity{
     @Column(nullable = false)
     private boolean enabled;
 
-    @Column(updatable = false)
-    private LocalDate createDate = LocalDate.now();
+    @Column(updatable = false, nullable = false)
+    private LocalDate createDate;
 
-    private LocalDate deleteDate;
+    @PrePersist
+    protected void onCreate() {
+        this.createDate = LocalDate.now();
+    }
 
-    @OneToOne
-    @JoinColumn(name = "create_by")
-    private User createBy;
+
+    private LocalDate deletedDate;
+
+    @ManyToOne
+    @JoinColumn(name = "created_by")
+    private User createdBy;
+
 
 }

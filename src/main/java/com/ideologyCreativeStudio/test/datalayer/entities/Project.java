@@ -32,7 +32,7 @@ public class Project extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinTable(
             name = "project_users",
             joinColumns = @JoinColumn(name = "project_id"),

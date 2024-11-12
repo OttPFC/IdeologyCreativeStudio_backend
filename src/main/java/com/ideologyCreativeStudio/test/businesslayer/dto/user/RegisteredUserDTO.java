@@ -1,8 +1,8 @@
-package com.ideologyCreativeStudio.test.businesslayer.dto;
+package com.ideologyCreativeStudio.test.businesslayer.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.ideologyCreativeStudio.test.businesslayer.dto.response.AttachmentResponseDTO;
-import com.ideologyCreativeStudio.test.businesslayer.dto.response.RolesResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,9 +19,9 @@ public class RegisteredUserDTO {
     String firstName;
     String lastName;
     String username;
-    @JsonIgnore
-    String password;
     boolean enabled;
     List<RolesResponseDTO> roles;
-    AttachmentResponseDTO attachment;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private AttachmentResponseDTO attachment;
+
 }
