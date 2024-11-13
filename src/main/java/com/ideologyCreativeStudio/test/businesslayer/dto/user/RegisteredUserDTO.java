@@ -19,6 +19,9 @@ public class RegisteredUserDTO {
     String firstName;
     String lastName;
     String username;
+    String email;
+    @JsonIgnore
+    String password;
     boolean enabled;
     List<RolesResponseDTO> roles;
     @JsonInclude(JsonInclude.Include.NON_NULL)

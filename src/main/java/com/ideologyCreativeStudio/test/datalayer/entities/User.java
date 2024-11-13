@@ -19,7 +19,6 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Builder(setterPrefix = "with")
-@ToString
 public class User extends BaseEntity {
 
     @Column(length = 30, nullable = false)
@@ -28,17 +27,14 @@ public class User extends BaseEntity {
     @Column(length = 30, nullable = false)
     private String lastName;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = false, unique = true)
     private String username;
 
-    @Column(length = 100, nullable = false, unique = true)
+    @Column(length = 100, unique = true)
     @Email
     private String email;
 
     @Column(length = 125, nullable = false)
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$",
-            message = "Password non valida: deve contenere almeno una maiuscola, una minuscola, un numero, un carattere speciale, e tra 8 e 20 caratteri")
-
     private String password;
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
