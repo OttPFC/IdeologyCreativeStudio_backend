@@ -59,6 +59,7 @@ public class SecurityConfig  {
                         // ------------------------------------------------------------------------
                         .requestMatchers(HttpMethod.POST, "/user/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/projects").authenticated()
                         // ------------------------------------------------------------------------
                         .requestMatchers(HttpMethod.PUT, "/api/user/{id}").authenticated()
                         //ADMIN

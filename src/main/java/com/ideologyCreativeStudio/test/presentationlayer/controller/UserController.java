@@ -3,6 +3,7 @@ package com.ideologyCreativeStudio.test.presentationlayer.controller;
 import com.ideologyCreativeStudio.test.businesslayer.dto.user.LoginResponseDTO;
 import com.ideologyCreativeStudio.test.businesslayer.dto.user.RegisterUserDTO;
 import com.ideologyCreativeStudio.test.businesslayer.dto.user.RegisteredUserDTO;
+import com.ideologyCreativeStudio.test.businesslayer.impl.UserServiceImpl;
 import com.ideologyCreativeStudio.test.businesslayer.interfaces.entities.UserService;
 import com.ideologyCreativeStudio.test.presentationlayer.exceptions.ApiValidationException;
 import com.ideologyCreativeStudio.test.presentationlayer.exceptions.DisabledUserException;
@@ -30,12 +31,12 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
 
     @GetMapping
     public ResponseEntity<Page<RegisteredUserDTO>> getUsers(Pageable pageable) {
-        Page<RegisteredUserDTO> allUsers = userService.getAll(pageable);
+        Page<RegisteredUserDTO> allUsers = userServiceImpl.getAll(pageable);
         System.out.println(allUsers);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Totale", String.valueOf(allUsers.getTotalElements()));
@@ -45,7 +46,7 @@ public class UserController {
     @GetMapping("{id}")
     public ResponseEntity<RegisteredUserDTO> getUser(@PathVariable Long id) {
         try {
-            RegisteredUserDTO userDTO = userService.getById(id);
+            RegisteredUserDTO userDTO = userServiceImpl.getById(id);
             return new ResponseEntity<>(userDTO, HttpStatus.OK);
         } catch (NotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -58,7 +59,7 @@ public class UserController {
             throw new ApiValidationException(validator.getAllErrors());
         }
 
-        RegisteredUserDTO registeredUser = userService.register(
+             RegisteredUserDTO registeredUser = userServiceImpl.register(
                 RegisterUserDTO.builder()
                         .withFirstName(model.firstName())
                         .withLastName(model.lastName())
@@ -76,7 +77,7 @@ public class UserController {
             throw new ApiValidationException(validator.getAllErrors());
         }
 
-        Optional<LoginResponseDTO> loginResponse = userService.login(model.username(), model.password());
+        Optional<LoginResponseDTO> loginResponse = userServiceImpl.login(model.username(), model.password());
 
         if (loginResponse.isPresent()) {
             LoginResponseDTO responseDTO = loginResponse.get();
@@ -95,13 +96,13 @@ public class UserController {
 
     @GetMapping("/search")
     public ResponseEntity<List<RegisteredUserDTO>> searchUsers(@RequestParam String firstName) {
-        List<RegisteredUserDTO> users = userService.searchUsersByFirstName(firstName);
+        List<RegisteredUserDTO> users = userServiceImpl.searchUsersByFirstName(firstName);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @PutMapping("{id}")
     public ResponseEntity<RegisteredUserDTO> update(@PathVariable Long id, @RequestBody RegisteredUserDTO userDto) {
-        var updatedUser = userService.update(id, userDto);
+        var updatedUser = userServiceImpl.update(id, userDto);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
@@ -109,7 +110,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<RegisteredUserDTO> addUserRole(@PathVariable Long id, @RequestParam("role") String role) {
         try {
-            RegisteredUserDTO updatedUser = userService.addRole(id, role);
+            RegisteredUserDTO updatedUser = userServiceImpl.addRole(id, role);
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } catch (NotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -120,7 +121,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<RegisteredUserDTO> removeUserRole(@PathVariable Long id, @RequestParam("role") String role) {
         try {
-            RegisteredUserDTO updatedUser = userService.removeRole(id, role);
+            RegisteredUserDTO updatedUser = userServiceImpl.removeRole(id, role);
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } catch (NotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -130,7 +131,7 @@ public class UserController {
     @DeleteMapping("{id}")
     public ResponseEntity<RegisteredUserDTO> deleteUser(@PathVariable Long id) {
         try {
-            userService.delete(id);
+            userServiceImpl.delete(id);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (NotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

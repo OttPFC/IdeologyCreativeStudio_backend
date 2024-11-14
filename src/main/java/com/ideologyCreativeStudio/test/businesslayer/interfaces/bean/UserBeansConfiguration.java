@@ -40,7 +40,7 @@ public class UserBeansConfiguration {
                 .withLastName(input.getLastName())
                 .withUsername(input.getUsername())
                 .withEmail(input.getEmail())
-                .withRoles(input.getRoles().stream().map(this::toRoleDTO).collect(Collectors.toList()))
+                .withRoles(input.getRoles().stream().map(BeansConfiguration::toRoleDTO).collect(Collectors.toList()))
                 .withEnabled(input.isEnabled())
                 .build();
     }
@@ -56,7 +56,7 @@ public class UserBeansConfiguration {
                 .withEmail(input.getEmail())
                 .withPassword(input.getPassword())
                 .withEnabled(input.isEnabled())
-                .withRoles(input.getRoles().stream().map(this::toRoleEntity).collect(Collectors.toList()))
+                .withRoles(input.getRoles().stream().map(BeansConfiguration::toRoleEntity).collect(Collectors.toList()))
                 .build();
     }
 
@@ -70,72 +70,64 @@ public class UserBeansConfiguration {
                         .withLastName(input.getLastName())
                         .withUsername(input.getUsername())
                         .withEmail(input.getEmail())
-                        .withRoles(input.getRoles().stream().map(this::toRoleDTO).collect(Collectors.toList()))
+                        .withRoles(input.getRoles().stream().map(BeansConfiguration::toRoleDTO).collect(Collectors.toList()))
                         .withEnabled(input.isEnabled())
                         .build())
                 .build();
     }
 
-    private RegisteredUserDTO toRegisteredUserDTO(User user) {
-        return RegisteredUserDTO.builder()
-                .withId(user.getId())
-                .withFirstName(user.getFirstName())
-                .withLastName(user.getLastName())
-                .withUsername(user.getUsername())
-                .withEmail(user.getEmail())
-                .withRoles(user.getRoles().stream().map(this::toRoleDTO).collect(Collectors.toList()))
-                .withEnabled(user.isEnabled())
-                .build();
-    }
+//    @Bean
+//    @Scope("singleton")
+//    public Mapper<User, LoginResponseDTO> mapUserEntity2LoginResponse() {
+//        return input -> LoginResponseDTO.builder()
+//                .withUser(mapUserEntity2RegisteredUser().map(input))
+//                .build();
+//    }
+//
+//    private RegisteredUserDTO toRegisteredUserDTO(User user) {
+//        return RegisteredUserDTO.builder()
+//                .withId(user.getId())
+//                .withFirstName(user.getFirstName())
+//                .withLastName(user.getLastName())
+//                .withUsername(user.getUsername())
+//                .withEmail(user.getEmail())
+//                .withRoles(user.getRoles().stream().map(BeansConfiguration::toRoleDTO).collect(Collectors.toList()))
+//                .withEnabled(user.isEnabled())
+//                .build();
+//    }
+//
+//    private User toUserEntity(RegisteredUserDTO userDTO) {
+//        if (userDTO == null) {
+//            return null;
+//        }
+//        return User.builder()
+//                .withFirstName(userDTO.getFirstName())
+//                .withLastName(userDTO.getLastName())
+//                .withUsername(userDTO.getUsername())
+//                .withEmail(userDTO.getEmail())
+//                .withRoles(userDTO.getRoles().stream().map(BeansConfiguration::toRoleEntity).collect(Collectors.toList()))
+//                .build();
+//    }
+//
+//    private Attachment toImageEntity(AttachmentResponseDTO attachmentResponseDTO) {
+//        if (attachmentResponseDTO == null) {
+//            return null;
+//        }
+//        Attachment attachment = new Attachment();
+//        attachment.setUrl(attachmentResponseDTO.getUrl());
+//        attachment.setType(attachmentResponseDTO.getType());
+//        return attachment;
+//    }
+//
+//    private AttachmentResponseDTO toImageDTO(Attachment image) {
+//        if (image == null) {
+//            return null;
+//        }
+//        return AttachmentResponseDTO.builder()
+//                .withUrl(image.getUrl())
+//                .withType(image.getType())
+//                .build();
+//    }
 
-    private User toUserEntity(RegisteredUserDTO userDTO) {
-        if (userDTO == null) {
-            return null;
-        }
-        return User.builder()
-                .withFirstName(userDTO.getFirstName())
-                .withLastName(userDTO.getLastName())
-                .withUsername(userDTO.getUsername())
-                .withEmail(userDTO.getEmail())
-                .withRoles(userDTO.getRoles().stream().map(this::toRoleEntity).collect(Collectors.toList()))
-                .build();
-    }
-
-    private Attachment toImageEntity(AttachmentResponseDTO attachmentResponseDTO) {
-        if (attachmentResponseDTO == null) {
-            return null;
-        }
-        Attachment attachment = new Attachment();
-        attachment.setUrl(attachmentResponseDTO.getUrl());
-        attachment.setType(attachmentResponseDTO.getType());
-        return attachment;
-    }
-
-    private AttachmentResponseDTO toImageDTO(Attachment image) {
-        if (image == null) {
-            return null;
-        }
-        return AttachmentResponseDTO.builder()
-                .withUrl(image.getUrl())
-                .withType(image.getType())
-                .build();
-    }
-    private RolesResponseDTO toRoleDTO(Role roleEntity) {
-        if (roleEntity == null) {
-            return null;
-        }
-        return RolesResponseDTO.builder()
-                .withRoleType(roleEntity.getRoleType())
-                .build();
-    }
-
-    private Role toRoleEntity(RolesResponseDTO roleDTO) {
-        if (roleDTO == null) {
-            return null;
-        }
-        Role roleEntity = new Role();
-        roleEntity.setRoleType(roleDTO.getRoleType());
-        return roleEntity;
-    }
 
 }

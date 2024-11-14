@@ -5,11 +5,14 @@ import com.ideologyCreativeStudio.test.businesslayer.dto.response.ProjectRespons
 import com.ideologyCreativeStudio.test.businesslayer.dto.user.RegisteredUserDTO;
 import com.ideologyCreativeStudio.test.businesslayer.interfaces.generics.CRUDService;
 
-public interface ProjectService extends CRUDService<ProjectDTO, ProjectResponseDTO> {
+public interface ProjectService extends CRUDService<ProjectResponseDTO, ProjectDTO> {
 
-    ProjectDTO getByTitle(String title);
+    ProjectResponseDTO getByTitle(String title);
 
-    ProjectDTO getByUser (RegisteredUserDTO user);
+    ProjectResponseDTO getByUser (RegisteredUserDTO user);
+
+    ProjectResponseDTO addUsers(Long projectId, Long userId);
+
 
 
 

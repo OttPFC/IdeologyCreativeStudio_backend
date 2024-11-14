@@ -25,6 +25,9 @@ public class Client extends BaseEntity{
     @Pattern(regexp = "^[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,}$", message = "Email non valida")
     private String email;
 
+    @Column(length = 30)
+    private String phone;
+
     @Column(length = 50)
     private String address;
 
@@ -43,7 +46,7 @@ public class Client extends BaseEntity{
     }
 
 
-    private LocalDate deletedDate;
+    private LocalDate lastModifiedDate;
 
     @ManyToOne
     @JoinColumn(name = "created_by")

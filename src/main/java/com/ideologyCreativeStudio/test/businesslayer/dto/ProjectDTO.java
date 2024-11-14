@@ -18,10 +18,14 @@ import java.util.List;
 @Builder(setterPrefix = "with")
 public class ProjectDTO extends BaseDTO{
 
+    private Long id;
     private String title;
     private String description;
+    private LocalDate createDate;
     private LocalDate startDate;
     private LocalDate endDate;
     private Status status;
+    private RegisteredUserDTO author;
     private List<RegisteredUserDTO> users = new ArrayList<>();
+
 }

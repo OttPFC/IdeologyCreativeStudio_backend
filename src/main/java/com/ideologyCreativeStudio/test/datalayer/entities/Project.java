@@ -24,6 +24,7 @@ public class Project extends BaseEntity{
     @Column(length = 250)
     private String description;
 
+    private LocalDate createDate;
 
     private LocalDate startDate;
 
@@ -31,6 +32,9 @@ public class Project extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    @ManyToOne
+    private User author;
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinTable(

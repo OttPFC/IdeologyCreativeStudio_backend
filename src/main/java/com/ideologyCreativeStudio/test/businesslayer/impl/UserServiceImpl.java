@@ -94,7 +94,7 @@ public class UserServiceImpl implements UserService {
                 var totalUsers = this.getAll(defaultPageable);
 
                 log.info("User" + userEntity);
-                log.info("User" + totalUsers);
+
                 if (userEntity.getRoles() == null) {
                     log.debug("Initializing roles as userEntity.getRoles() was null");
                     userEntity.setRoles(new ArrayList<>());
@@ -116,8 +116,9 @@ public class UserServiceImpl implements UserService {
                 userEntity.setEnabled(true);
                 log.debug("Saving user: {}", userEntity);
                 var savedUser = mapRegisteredUser.map(usersRepository.save(userEntity));
-
-                emailConfig.sendMail(newUser.getEmail(), "Welcome!", "Thank you for registering!");
+                log.debug("Saving user: {}", savedUser);
+//                emailConfig.sendMail(newUser.getEmail(), "Welcome!", "Thank you for registering!");
+                log.debug("Saving user: {}", savedUser);
                 return savedUser;
             } catch (Exception e) {
                 log.error(String.format("Exception saving user %s", usersRepository), e);
@@ -131,8 +132,10 @@ public class UserServiceImpl implements UserService {
     public Optional<LoginResponseDTO> login(String username, String password) {
         try {
             var authResult  = auth.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+            System.out.println(authResult);
             SecurityContextHolder.getContext().setAuthentication(authResult );
             var dto = mapLogin.map(usersRepository.findOneByUsername(username).orElse(null));
+            System.out.println(dto);
             dto.setAccessToken(jwt.generateAccessToken(authResult));
             return Optional.of(dto);
         } catch (NoSuchElementException e) {
