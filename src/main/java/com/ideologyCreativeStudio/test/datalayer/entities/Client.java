@@ -45,7 +45,7 @@ public class Client extends BaseEntity{
         this.createDate = LocalDate.now();
     }
 
-
+    @Column
     private LocalDate lastModifiedDate;
 
     @ManyToOne

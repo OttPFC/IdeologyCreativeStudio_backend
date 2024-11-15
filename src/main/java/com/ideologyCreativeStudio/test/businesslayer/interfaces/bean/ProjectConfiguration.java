@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+import java.time.LocalDate;
 import java.util.stream.Collectors;
 
 
@@ -24,7 +25,7 @@ public class ProjectConfiguration {
         return input -> Project.builder()
                 .withTitle(input.getTitle())
                 .withDescription(input.getDescription())
-                .withCreateDate(input.getCreateDate())
+                .withCreateDate(LocalDate.now())
                 .withStartDate(input.getStartDate())
                 .withEndDate(input.getEndDate())
                 .withStatus(input.getStatus())

@@ -79,7 +79,9 @@ public class ProjectServiceImpl implements ProjectService {
     public Page<ProjectResponseDTO> getAll(Pageable pageable) {
 
         String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        log.info(username);
         User user = userRepo.findOneByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+        log.info(String.valueOf(user));
         Page<Project> projects = projectRepo.findAllByAuthor_Id(user.getId(), pageable);
 
 

@@ -50,10 +50,15 @@ public class User extends BaseEntity {
     private boolean enabled;
 
     @Column(updatable = false)
-    private LocalDate createDate;
+    private LocalDate createDate = LocalDate.now();
+
+    @Column
+    private LocalDate lastModifiedDate = LocalDate.now();
 
     @PrePersist
     protected void onCreate() {
         this.createDate = LocalDate.now();
+        this.lastModifiedDate = LocalDate.now();
     }
+
 }

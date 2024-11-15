@@ -23,11 +23,13 @@ public class Project extends BaseEntity{
 
     @Column(length = 250)
     private String description;
-
-    private LocalDate createDate;
-
+    @Column
+    private LocalDate createDate = LocalDate.now();
+    @Column
+    private LocalDate lastModifiedDate;
+    @Column
     private LocalDate startDate;
-
+    @Column
     private LocalDate endDate;
 
     @Enumerated(EnumType.STRING)
@@ -45,4 +47,9 @@ public class Project extends BaseEntity{
     @ToString.Exclude
     private List<User> users = new ArrayList<>();
 
+    @PrePersist
+    protected void onCreate() {
+        this.createDate = LocalDate.now();
+        this.lastModifiedDate = LocalDate.now();
+    }
 }

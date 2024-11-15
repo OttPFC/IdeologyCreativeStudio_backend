@@ -23,8 +23,12 @@ public class Task extends BaseEntity{
     private String description;
 
     @Column(updatable = false,nullable = false)
-    private LocalDate startDate = LocalDate.now();
+    private LocalDate createDate = LocalDate.now();
 
+    @Column
+    private LocalDate startDate;
+
+    @Column
     private LocalDate endDate;
 
     @Enumerated(EnumType.STRING)

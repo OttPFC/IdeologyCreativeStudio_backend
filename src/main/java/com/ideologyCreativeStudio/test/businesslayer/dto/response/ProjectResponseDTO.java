@@ -21,6 +21,7 @@ public class ProjectResponseDTO extends BaseDTO {
     private String title;
     private String description;
     private LocalDate createDate;
+    private LocalDate lastModifiedDate;
     private LocalDate startDate;
     private LocalDate endDate;
     private Status status;

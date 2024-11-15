@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -20,11 +21,10 @@ public class RegisteredUserDTO {
     String lastName;
     String username;
     String email;
+    LocalDate createDate;
     @JsonIgnore
     String password;
     boolean enabled;
     List<RolesResponseDTO> roles;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private AttachmentResponseDTO attachment;
 
 }

@@ -21,7 +21,7 @@ public class ProjectDTO extends BaseDTO{
     private Long id;
     private String title;
     private String description;
-    private LocalDate createDate;
+    private LocalDate lastModifiedDate;
     private LocalDate startDate;
     private LocalDate endDate;
     private Status status;

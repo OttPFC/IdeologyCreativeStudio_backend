@@ -28,6 +28,7 @@ public class UserBeansConfiguration {
                 .withUsername(input.getUsername())
                 .withEmail(input.getEmail())
                 .withPassword(input.getPassword())
+
                 .build();
     }
 
@@ -40,6 +41,7 @@ public class UserBeansConfiguration {
                 .withLastName(input.getLastName())
                 .withUsername(input.getUsername())
                 .withEmail(input.getEmail())
+                .withCreateDate(input.getCreateDate())
                 .withRoles(input.getRoles().stream().map(BeansConfiguration::toRoleDTO).collect(Collectors.toList()))
                 .withEnabled(input.isEnabled())
                 .build();
