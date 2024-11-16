@@ -40,6 +40,7 @@ public class Client extends BaseEntity{
     @Column(updatable = false, nullable = false)
     private LocalDate createDate;
 
+    private LocalDate deletedDate;
     @PrePersist
     protected void onCreate() {
         this.createDate = LocalDate.now();

@@ -8,11 +8,10 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public interface ClientService extends CRUDService<ClientDTO, ClientResponseDTO> {
+public interface ClientService extends CRUDService<ClientResponseDTO,ClientDTO> {
 
 
-
-    List<ClientDTO> searchUsersByFirstName(String firstName);
+    List<ClientResponseDTO> findByNameContainingIgnoreCase(String firstName);
 
 
 

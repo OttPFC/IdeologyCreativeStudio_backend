@@ -14,11 +14,14 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder(setterPrefix = "with")
 public class ClientResponseDTO extends BaseDTO {
+
+    private Long id;
     private String name;
 
     private String email;
 
     private String address;
+    private String phone;
 
     private String note;
 
@@ -26,5 +29,6 @@ public class ClientResponseDTO extends BaseDTO {
 
     private LocalDate createDate;
     private LocalDate deleteDate;
+    private LocalDate lastModifiedDate;
     private RegisteredUserDTO createBy;
 }

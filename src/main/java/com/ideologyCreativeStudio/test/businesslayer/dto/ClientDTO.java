@@ -14,11 +14,15 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder(setterPrefix = "with")
 public class ClientDTO extends BaseDTO {
+
+    private Long id;
     private String name;
 
     private String email;
 
     private String address;
+
+    private String phone;
 
     private String note;
 

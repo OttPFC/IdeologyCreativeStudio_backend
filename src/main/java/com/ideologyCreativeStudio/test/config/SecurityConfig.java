@@ -57,10 +57,12 @@ public class SecurityConfig  {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.GET, "/user/{id}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/projects/*").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/clients/*").authenticated()
                         // ------------------------------------------------------------------------
                         .requestMatchers(HttpMethod.POST, "/user/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user").permitAll()
                         .requestMatchers(HttpMethod.POST, "/projects").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/clients").authenticated()
                         // ------------------------------------------------------------------------
                         .requestMatchers(HttpMethod.PUT, "/api/user/{id}").authenticated()
                         //ADMIN
