@@ -66,6 +66,7 @@ public class UserController {
                         .withUsername(model.username())
                         .withEmail(model.email())
                         .withPassword(model.password())
+                        .withRole(model.role())
                         .build());
 
         return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);

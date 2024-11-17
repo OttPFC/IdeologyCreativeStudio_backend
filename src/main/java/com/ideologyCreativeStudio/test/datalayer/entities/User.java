@@ -34,7 +34,7 @@ public class User extends BaseEntity {
     @Email
     private String email;
 
-    @Column(length = 125, nullable = false)
+    @Column(length = 125, nullable = true)
     private String password;
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)

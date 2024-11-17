@@ -28,8 +28,11 @@ public class UserBeansConfiguration {
                 .withUsername(input.getUsername())
                 .withEmail(input.getEmail())
                 .withPassword(input.getPassword())
-
-                .build();
+                .withRoles(
+                        input.getRole().stream()
+                                .map(role -> Role.builder().withRoleType(role).build())
+                                .collect(Collectors.toList())
+                ).build();
     }
 
     @Bean

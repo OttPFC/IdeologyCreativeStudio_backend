@@ -60,11 +60,11 @@ public class SecurityConfig  {
                         .requestMatchers(HttpMethod.GET, "/clients/*").authenticated()
                         // ------------------------------------------------------------------------
                         .requestMatchers(HttpMethod.POST, "/user/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/user").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/user").authenticated()
                         .requestMatchers(HttpMethod.POST, "/projects").authenticated()
                         .requestMatchers(HttpMethod.POST, "/clients").authenticated()
                         // ------------------------------------------------------------------------
-                        .requestMatchers(HttpMethod.PUT, "/api/user/{id}").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/user/{id}").authenticated()
                         //ADMIN
                         .requestMatchers(HttpMethod.GET, "/**").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/**").hasAuthority("ADMIN")

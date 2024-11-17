@@ -100,7 +100,7 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectResponseDTO save(ProjectDTO projectDTO) {
         String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
         User user = userRepo.findOneByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
-
+        System.out.println(user);
         Project project = dtoToEntity.map(projectDTO);
         project.setAuthor(user);
         Project savedProject = projectRepo.save(project);

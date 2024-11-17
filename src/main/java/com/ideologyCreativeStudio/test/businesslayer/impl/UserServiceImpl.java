@@ -86,11 +86,13 @@ public class UserServiceImpl implements UserService {
                 var userEntity = mapEntity.map(newUser);
                 log.info("User to be registered: {}", newUser);
                 System.out.println(newUser);
+
                 var encryptedPassword  = encoder.encode(newUser.getPassword());
                 log.info("Password encrypted: {}", encryptedPassword );
 
                 userEntity.setPassword(encryptedPassword );
                 log.info("Password encrypted 2: {}", encryptedPassword );
+
                 var totalUsers = this.getAll(defaultPageable);
 
                 log.info("User" + userEntity);
@@ -106,6 +108,17 @@ public class UserServiceImpl implements UserService {
                                     .withRoleType("ADMIN")
                                     .build()
                     );
+                    log.info("First user registered as ADMIN");
+                }
+                    else if (newUser.getRole() != null && !newUser.getRole().isEmpty()) {
+                        newUser.getRole().forEach(role -> {
+                            userEntity.getRoles().add(
+                                    Role.builder()
+                                            .withRoleType(role)
+                                            .build()
+                            );
+                        });
+                        log.info("User registered with roles: {}", newUser.getRole());
                 } else {
                     userEntity.getRoles().add(
                             Role.builder()

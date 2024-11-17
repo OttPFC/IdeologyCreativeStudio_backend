@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 @Data
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
@@ -17,6 +19,7 @@ public class RegisterUserDTO extends BaseDTO {
     String username;
     String email;
     String password;
+    List<String> role;
 
 
 }
