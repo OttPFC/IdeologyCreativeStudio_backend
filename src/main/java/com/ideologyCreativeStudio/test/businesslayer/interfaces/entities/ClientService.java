@@ -13,6 +13,6 @@ public interface ClientService extends CRUDService<ClientResponseDTO,ClientDTO> 
 
     List<ClientResponseDTO> findByNameContainingIgnoreCase(String firstName);
 
-
+List<ClientResponseDTO> deleteMultiple(List<Long> ids);
 
 }

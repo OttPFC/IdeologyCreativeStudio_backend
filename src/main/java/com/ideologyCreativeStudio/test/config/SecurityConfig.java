@@ -65,12 +65,14 @@ public class SecurityConfig  {
                         .requestMatchers(HttpMethod.POST, "/clients").authenticated()
                         // ------------------------------------------------------------------------
                         .requestMatchers(HttpMethod.PUT, "/user/{id}").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/clients/{id}").hasAuthority("ADMIN")
                         //ADMIN
                         .requestMatchers(HttpMethod.GET, "/**").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/**").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/**").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/**").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/clients/delete-multiple").hasAuthority("ADMIN")
 
                         .anyRequest().authenticated()
                 )

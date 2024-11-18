@@ -60,5 +60,12 @@ public class ClientController {
         ClientResponseDTO deletedClient = clientServiceImpl.delete(id);
         return ResponseEntity.ok(deletedClient);
     }
+
+    @DeleteMapping("/delete-multiple")
+    public ResponseEntity<Void> deleteMultipleClients(@RequestBody List<Long> ids) {
+        clientServiceImpl.deleteMultiple(ids);
+        return ResponseEntity.noContent().build();
+    }
+
 }
 

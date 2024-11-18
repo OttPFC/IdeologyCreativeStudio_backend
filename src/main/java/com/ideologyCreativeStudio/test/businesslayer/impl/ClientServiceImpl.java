@@ -94,4 +94,21 @@ public class ClientServiceImpl implements ClientService {
         clientRepo.delete(client);
         return entityToDto.map(client);
     }
+
+    @Override
+    public List<ClientResponseDTO> deleteMultiple(List<Long> ids) {
+        List<Client> clients = clientRepo.findAllByIdIn(ids);
+        if (clients.isEmpty()) {
+            throw new RuntimeException("No clients found with the provided IDs");
+        }
+        clientRepo.deleteAll(clients);
+        log.info("Deleted clients with ids: {}", ids);
+
+
+        return clients.stream()
+                .map(client -> entityToDto.map(client))
+                .collect(Collectors.toList());
+    }
+
+
 }
