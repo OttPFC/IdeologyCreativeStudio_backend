@@ -111,7 +111,7 @@ public class JwtUtils {
                     .build()
                     .parseClaimsJws(token)
                     .getBody()
-                    .get("roles");  // Estrai il campo "roles"
+                    .get("roles");
         } catch (JwtException e) {
             System.err.println("Errore durante l'estrazione dei ruoli: " + e.getMessage());
             return null;

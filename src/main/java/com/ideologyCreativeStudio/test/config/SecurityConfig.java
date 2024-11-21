@@ -57,7 +57,11 @@ public class SecurityConfig  {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.GET, "/user/{id}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/projects/*").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/projects/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/projects/*").hasAuthority("USER")
                         .requestMatchers(HttpMethod.GET, "/clients/*").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/clients/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/clients/*").hasAuthority("USER")
                         // ------------------------------------------------------------------------
                         .requestMatchers(HttpMethod.POST, "/user/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user").authenticated()

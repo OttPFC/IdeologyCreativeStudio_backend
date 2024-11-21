@@ -82,7 +82,8 @@ public class ProjectServiceImpl implements ProjectService {
         log.info(username);
         User user = userRepo.findOneByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
         log.info(String.valueOf(user));
-        Page<Project> projects = projectRepo.findAllByAuthor_Id(user.getId(), pageable);
+        //Page<Project> projects = projectRepo.findAllByAuthor_Id(user.getId(), pageable);
+        Page<Project> projects = projectRepo.findAll(pageable);
 
 
         return projects.map(entityToDto::map);
